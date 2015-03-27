@@ -1,0 +1,11 @@
+<h1>Test</h1>
+
+<%- @galaxies.each do |galaxy| -%>
+  <ul>
+    <li><%= link_to galaxy.name, '/galaxies/' + galaxy.to_param %></li>
+
+  </ul>
+
+
+<%- end -%>
+<p><%= link_to "Create New Galaxy", new_galaxy_path %></p>

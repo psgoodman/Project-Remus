@@ -1,0 +1,25 @@
+require_relative "system.rb"
+require 'csv'
+
+class Galaxy < ActiveRecord::Base
+
+  has_many :systems
+
+  validates :name, presence: true, uniqueness: true
+
+  def systems_by_rings
+    current_ring = 0
+    result = []
+    until current_ring > rings do
+      ring_systems = []
+      systems.each do |system|
+        if system.ring == current_ring
+          ring_systems << system
+        end
+      end
+      result << ring_systems
+      current_ring += 1
+    end
+    result
+  end
+end
