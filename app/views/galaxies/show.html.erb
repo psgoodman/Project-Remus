@@ -5,7 +5,7 @@
     rect_coords = convert_coords(system.ring, system.angle)%>
 
     <circle cx="<%=rect_coords[0]%>" cy="<%=rect_coords[1]%>" r="15" stroke="green" stroke-width="3" fill="yellow" />
-
+  <a xlink:href="<%=galaxy_system_path(@galaxy, system)%>" target="_blank">
     <text x="<%=rect_coords[0]%>" y="<%=rect_coords[1]-12%>" fill="black"><%=system.name%></text>
   </a>
     <% system.linked_systems.each do |link|

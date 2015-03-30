@@ -1,0 +1,18 @@
+<h2 id="system_name"><%= @system.name%></h2>
+  <p>RAW: <%= @system.raw%><p>
+  <p>Max Census: <%= @system.max_census%><p>
+
+<h3>Connected Systems:</h3>
+<ul>
+<% @system.linked_systems.each do |link| %>
+  <li><a href="<%=galaxy_system_path(@system.galaxy, @system)%>"><%=link.name%></a>
+  </li>
+<%end%>
+</ul>
+
+<h3>System Contents:</h3>
+<ul id="contents">
+  <% @system.units.each do |unit| %>
+    <li class ="unit"><%=unit.name%></li>
+  <%end%>
+</ul>
