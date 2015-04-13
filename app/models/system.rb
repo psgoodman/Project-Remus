@@ -24,7 +24,7 @@ class System < ActiveRecord::Base
   end
 
   def income
-    census * @raw * @infrastructure
+    census * raw * infrastructure
   end
 
   def add_link(other_system)

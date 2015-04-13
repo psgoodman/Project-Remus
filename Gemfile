@@ -43,5 +43,19 @@ group :development, :test do
   gem 'spring'
 
   gem 'better_errors'
+
+  gem 'coveralls', require: false
+
+  gem 'rspec-rails'
+
+  gem "capybara"
+
+  gem "launchy"
+
+  gem "factory_girl"
+
+  gem "valid_attribute"
+
+  gem "shoulda-matchers"
 end
 
