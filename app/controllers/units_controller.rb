@@ -1,4 +1,5 @@
 class UnitsController < ApplicationController
+
   def create
     @system = System.find(params[:unit][:system_id])
     @unit = Unit.new(unit_params)
@@ -13,6 +14,16 @@ class UnitsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to system_path(@system) }
       format.js {}
+    end
+  end
+
+  def update
+    @unit = Unit.find(params[:id])
+
+    if @unit.update(unit_params)
+      redirect_to unit_path(@unit)
+    else
+      render :edit
     end
   end
 
