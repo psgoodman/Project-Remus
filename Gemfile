@@ -51,5 +51,11 @@ group :development, :test do
   gem "capybara"
 
   gem "launchy"
+
+  gem "factory_girl"
+
+  gem "valid_attribute"
+
+  gem "shoulda-matchers"
 end
 
