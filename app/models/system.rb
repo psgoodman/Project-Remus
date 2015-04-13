@@ -11,17 +11,20 @@ class System < ActiveRecord::Base
 
   def populate
     new_pop = 0
-    @census.times do
+    census.times do
       if rand(10) == 0
         new_pop += 1
       end
     end
 
-    @census += new_pop
+    census += new_pop
+    if census > max_census
+      census = max_census
+    end
   end
 
   def income
-    @census * @raw * @infrastructure
+    census * raw * infrastructure
   end
 
   def add_link(other_system)
