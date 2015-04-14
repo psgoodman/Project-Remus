@@ -1,5 +1,4 @@
 class UnitsController < ApplicationController
-
   def create
     @system = System.find(params[:unit][:system_id])
     @unit = Unit.new(unit_params)
