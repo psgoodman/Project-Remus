@@ -5,16 +5,16 @@ class UnitsController < ApplicationController
     @unit = Unit.new(unit_params)
     @unit.destination = @system
 
-    if @unit.save
-      flash[:notice] = "Unit Created"
-    else
-      flash[:notice] = "Failed to Create Unit"
+    respond_to do |format|
+      if @unit.save
+        format.html { redirect_to :back, notice: "Unit Created" }
+        format.json { render json: @unit }
+      else
+        format.html { render "systems/show" }
+        format.json { render json: @unit.errors, status: :unprocessable_entity }
+      end
     end
 
-    respond_to do |format|
-      format.html { redirect_to system_path(@system) }
-      format.js {}
-    end
   end
 
   def update
@@ -33,8 +33,8 @@ class UnitsController < ApplicationController
     @unit.destroy
     flash[:notice] = "Unit Destroyed"
     respond_to do |format|
-      format.html { redirect_to system_path(@system) }
-      format.js {}
+      format.html { redirect_to galaxy_system_path(@system) }
+      format.json { head :no_content }
     end
   end
 
