@@ -13,18 +13,19 @@
 <h3>System Contents:</h3>
 <ul id="contents">
   <% @system.units.each do |unit| %>
-    <li id="unit-<%= unit.id %>"><%=unit.name%>
+    <li id="unit-<%= unit.id %>" data-unit-id="<%= unit.id %>"><%=unit.name%>
       <%- unless unit.destination == @system -%>
         - Destination: <%=unit.destination.name%>
       <%- end -%>
-      <%= link_to "Delete Unit", unit_path(unit), html_options = { remote: true, method: "delete" } %>
+      <%= button_to "Delete Unit", unit_path(unit),
+        method: :delete, form: { data: { 'unit' => 'delete' } }%>
       </li>
   <%end%>
 </ul>
 
 <h4>Create Unit:</h4>
 
-<%= form_for(@unit, remote: true) do |f| %>
+<%= form_for(@unit, data: {unit: 'create'}) do |f| %>
   <div class="field">
     <%= f.label :name, "Unit Name" %>
     <%= f.text_field :name %>
