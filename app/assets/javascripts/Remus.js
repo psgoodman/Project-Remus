@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $('[data-unit="create"]').on('submit', function(event) {
     event.preventDefault();
-    $form = $(event.currentTarget);
+    var $form = $(event.currentTarget);
     $.ajax({
       type: "POST",
       url: $form.attr('action'),
@@ -9,12 +9,17 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(unit) {
         var action = '/units/'+ unit.id;
-        $newForm = $('<form>').attr({
+        var $newForm = $('<form>').attr({
           action: action,
-          method: 'delete',
+          method: 'post',
           'data-unit': 'delete'
         });
-        $unitButton = $('<input>').attr({type: 'submit', value: 'Delete Unit'});
+        var $unitButton = $('<input>').attr({type: 'submit', value: 'Delete Unit', 'data-method': 'delete'});
+        var $methodField = $('<input>').attr({type: 'hidden', name: '_method', value: 'delete'});
+        var $authentoken = $('meta[name=csrf-token]').attr('content')
+        var $authentField = $('<input>').attr({type: 'hidden', name: 'authenticity_token', value: $authentoken})
+        $newForm.append($methodField);
+        $newForm.append($authentField);
         $newForm.append($unitButton);
         var $unitListing = $('<li>').addClass('unit').attr('data-unit-id', unit.id).html(unit.name);
         $unitListing.append($newForm)

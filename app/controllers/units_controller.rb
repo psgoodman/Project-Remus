@@ -32,7 +32,7 @@ class UnitsController < ApplicationController
     @unit.destroy
     flash[:notice] = "Unit Destroyed"
     respond_to do |format|
-      format.html { redirect_to galaxy_system_path(@system) }
+      format.html { redirect_to galaxy_system_path(@system.galaxy, @system) }
       format.json { head :no_content }
     end
   end
