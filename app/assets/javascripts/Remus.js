@@ -14,14 +14,18 @@ $(document).ready(function() {
           method: 'post',
           'data-unit': 'delete'
         });
-        var $unitButton = $('<input>').attr({type: 'submit', value: 'Delete Unit', 'data-method': 'delete'});
-        var $methodField = $('<input>').attr({type: 'hidden', name: '_method', value: 'delete'});
-        var $authentoken = $('meta[name=csrf-token]').attr('content')
-        var $authentField = $('<input>').attr({type: 'hidden', name: 'authenticity_token', value: $authentoken})
+        var $unitButton = $('<input>').attr({type: 'submit',
+          value: 'Delete Unit', 'data-method': 'delete'});
+        var $methodField = $('<input>').attr({type: 'hidden', name: '_method',
+          value: 'delete'});
+        var $authentoken = $('meta[name=csrf-token]').attr('content');
+        var $authentField = $('<input>').attr({type: 'hidden',
+          name: 'authenticity_token', value: $authentoken});
         $newForm.append($methodField);
         $newForm.append($authentField);
         $newForm.append($unitButton);
-        var $unitListing = $('<li>').addClass('unit').attr('data-unit-id', unit.id).html(unit.name);
+        var $unitListing = $('<li>').addClass('unit').attr('data-unit-id',
+          unit.id).html(unit.name);
         $unitListing.append($newForm)
         $("#contents").append($unitListing);
         }
@@ -31,7 +35,7 @@ $(document).ready(function() {
   $('[data-unit-id]').on('submit', '[data-unit="delete"]', function(event) {
     event.preventDefault();
 
-    $form = $(event.currentTarget);
+    var $form = $(event.currentTarget);
 
     $.ajax({
       type: "DELETE",
