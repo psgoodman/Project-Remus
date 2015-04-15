@@ -28,9 +28,9 @@ $(document).ready(function() {
           unit.id).html(unit.name);
         $unitListing.append($newForm);
         $("#contents").append($unitListing);
-        }
-        });
-      });
+      }
+    });
+  });
 
   $('[data-unit-id]').on('submit', '[data-unit="delete"]', function(event) {
     event.preventDefault();
