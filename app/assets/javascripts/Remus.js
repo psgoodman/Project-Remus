@@ -26,7 +26,7 @@ $(document).ready(function() {
         $newForm.append($unitButton);
         var $unitListing = $('<li>').addClass('unit').attr('data-unit-id',
           unit.id).html(unit.name);
-        $unitListing.append($newForm)
+        $unitListing.append($newForm);
         $("#contents").append($unitListing);
         }
         });
@@ -45,5 +45,5 @@ $(document).ready(function() {
         $form.closest('[data-unit-id]').remove();
       }
     });
-  })
+  });
 });
