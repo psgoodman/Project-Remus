@@ -1,12 +1,11 @@
 $(document).ready(function() {
   $('[data-unit="create"]').on('submit', function(event) {
-    debugger
     event.preventDefault();
     $form = $(event.currentTarget);
     $.ajax({
       type: "POST",
       url: $form.attr('action'),
-      // data: <SOMETHING>
+      data: $($form).serialize(),
       dataType: 'json',
       success: function(unit) {
         action = '/units/'+ unit.id;
@@ -17,8 +16,8 @@ $(document).ready(function() {
         });
         $unitButton = $('<input>').attr({type: 'submit', value: 'Delete Unit'});
         $newForm.append($unitButton);
-        $unitListing = "<li class=\"unit\" data-unit-id=" +
-        unit.id + "> " + unit.name + "</li>"
+        //Line 20 now makes seven list items. WHY SEVEN?!?!?
+        var $unitListing = $('li').addClass('unit').attr('data-unit-id', unit.id).html(unit.name);
         $unitListing.append($newForm)
         $("#contents").append($unitListing);
         }
