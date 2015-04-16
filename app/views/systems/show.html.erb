@@ -1,39 +1,55 @@
-<h2 id="system_name"><%= @system.name%></h2>
-  <p>RAW: <%= @system.raw%><p>
-  <p>Max Census: <%= @system.max_census%><p>
+<div class="row" id="title">
+  <div class="small-8 large-centered column" >
+    <h2 id="system_name"><%= @system.name%></h2>
 
-<h3>Connected Systems:</h3>
-<ul>
-<% @system.linked_systems.each do |link| %>
-  <li><a href="<%=galaxy_system_path(@system.galaxy, @system)%>"><%=link.name%></a>
-  </li>
-<%end%>
-</ul>
 
-<h3>System Contents:</h3>
-<ul id="contents">
-  <% @system.units.each do |unit| %>
-    <li id="unit-<%= unit.id %>" data-unit-id="<%= unit.id %>"><%=unit.name%>
-      <%- unless unit.destination == @system -%>
-        - Destination: <%=unit.destination.name%>
-      <%- end -%>
-      <%= button_to "Delete Unit", unit_path(unit),
-        method: :delete, form: { data: { 'unit' => 'delete' } }%>
-      </li>
-  <%end%>
-</ul>
-
-<h4>Create Unit:</h4>
-
-<%= form_for(@unit, data: {unit: 'create'}) do |f| %>
-  <div class="field">
-    <%= f.label :name, "Unit Name" %>
-    <%= f.text_field :name %>
   </div>
+</div>
 
-  <%= f.hidden_field(:system_id, value: @system.id) %>
+<div class="row">
+  <div class="large-12 columns">
+    <p>RAW: <%= @system.raw%><p>
+    <p>Max Census: <%= @system.max_census%><p>
+    <div class="row">
+      <div class="large-4 small-6 columns">
+        <h3>Connected Systems:</h3>
+        <ul>
+        <% @system.linked_systems.each do |link| %>
+          <li><a href="<%=galaxy_system_path(@system.galaxy, link)%>"><%=link.name%></a>
+          </li>
+        <%end%>
+        </ul>
 
-  <div class="actions">
-    <%= f.submit "Create Unit" %>
+    <h3>System Contents:</h3>
+    <ul id="contents">
+      <% @system.units.each do |unit| %>
+        <li id="unit-<%= unit.id %>" data-unit-id="<%= unit.id %>"><%=unit.name%>
+          <%- unless unit.destination == @system -%>
+            - Destination: <%=unit.destination.name%>
+          <%- end -%>
+          <div class="actions">
+            <%= button_to "Delete Unit", unit_path(unit),
+              method: :delete, form: { data: { 'unit' => 'delete' } }%>
+          </div>
+          </li>
+      <%end%>
+    </ul>
+
+    <h4>Create Unit:</h4>
+
+    <%= form_for(@unit, data: {unit: 'create'}) do |f| %>
+      <div class="field">
+        <%= f.label :name, "Unit Name" %>
+        <%= f.text_field :name %>
+      </div>
+
+      <%= f.hidden_field(:system_id, value: @system.id) %>
+
+      <div class="actions">
+        <%= f.submit "Create Unit" %>
+      </div>
+    <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
