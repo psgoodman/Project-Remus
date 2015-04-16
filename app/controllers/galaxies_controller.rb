@@ -30,7 +30,7 @@ class GalaxiesController < ApplicationController
   end
 
   def destroy
-    @galaxy = galaxy.find(params[:id])
+    @galaxy = Galaxy.find(params[:id])
     @galaxy.destroy
     flash[:notice] = 'galaxy deleted.'
     redirect_to'/galaxies'
