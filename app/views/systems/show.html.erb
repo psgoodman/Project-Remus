@@ -5,7 +5,7 @@
 <h3>Connected Systems:</h3>
 <ul>
 <% @system.linked_systems.each do |link| %>
-  <li><a href="<%=galaxy_system_path(@system.galaxy, @system)%>"><%=link.name%></a>
+  <li><a href="<%=galaxy_system_path(@system.galaxy, link)%>"><%=link.name%></a>
   </li>
 <%end%>
 </ul>
