@@ -12,6 +12,58 @@
  *
  *= require_tree .
  *= require_self
- *= require foundation_and_overrides
 
  */
+@import "foundation_and_overrides";
+
+$background-color: #000022;
+$font-color: #ddddcc;
+$visited-color: #cc4411;
+$hover-color: #999999;
+$unvisited-color: #EC9C2C;
+
+body {
+  background: $background-color;
+  color: $font-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $font-color;
+  text-align: center;
+}
+
+svg text {
+  font-size: 65%;
+  color: $font-color;
+}
+
+a:link {
+  color: $unvisited-color;
+}
+
+a:visited {
+  color: $visited-color;
+}
+
+a:hover {
+  color: $hover-color;
+}
+
+.field label {
+  color: $font-color;
+  font-size: 1em;
+}
+
+.field input {
+    border-radius: 3px;
+}
+
+.actions input {
+  background: $visited-color;
+  color: $font-color;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 80%
+}
