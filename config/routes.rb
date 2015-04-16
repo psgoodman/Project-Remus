@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'galaxies#index'
   resources :galaxies, only: [
-    :index, :show, :new, :create
+    :index, :show, :new, :create, :destroy
   ] do
     resources :systems, only: [:show]
   end
