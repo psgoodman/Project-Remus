@@ -20,21 +20,26 @@ $background-color: #000022;
 $font-color: #ddddcc;
 $visited-color: #cc4411;
 $hover-color: #999999;
-$unvisited-color: #EC9C2C;
+$unvisited-color: #ec9c2c;
 
 body {
   background: $background-color;
   color: $font-color;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: $font-color;
   text-align: center;
 }
 
 svg text {
-  font-size: 65%;
   color: $font-color;
+  font-size: 65%;
 }
 
 a:link {
@@ -55,14 +60,14 @@ a:hover {
 }
 
 .field input {
-    border-radius: 3px;
+  border-radius: 3px;
 }
 
 .actions input {
   background: $visited-color;
-  color: $font-color;
   border: none;
   border-radius: 3px;
+  color: $font-color;
   cursor: pointer;
   font: inherit;
   font-size: 80%
