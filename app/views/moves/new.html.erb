@@ -1,0 +1,24 @@
+<div class="row" id="title">
+  <div class="small-8 large-centered column" >
+    <h2>Issue orders for units at <%= @system.name%></h2>
+  </div>
+</div>
+<div class="row">
+  <div class="small-8 large-centered column">
+    <%= form_for  [@system.galaxy, @system] do |f| %>
+      <%-i = 0 -%>
+        <%options = []%>
+        <%options += @system.linked_systems%>
+        <%options += [@system]%>
+      <%= f.fields_for :units do |ff| %>
+        <%= ff.label :destination_id, @system.units[i].name%>
+        <%= ff.collection_select :destination_id, options, :id, :name %>
+        <%- i += 1 -%>
+      <% end %>
+      <div class="actions">
+        <%= f.submit "Issue Orders" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

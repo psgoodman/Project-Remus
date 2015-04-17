@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :galaxies, only: [
     :index, :show, :new, :create, :destroy
   ] do
-    resources :systems, only: [:show]
+    resources :systems, only: [:show, :update] do
+      resources :moves, only: [:new]
+    end
   end
   resources :units, only: [:create, :destroy]
 
