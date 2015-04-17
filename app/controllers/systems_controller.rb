@@ -5,7 +5,6 @@ class SystemsController < ApplicationController
   end
 
   def update
-    binding.pry
     @system = System.find(params[:id])
     if @system.update(system_params)
       redirect_to galaxy_system_path(@system.galaxy, @system)
