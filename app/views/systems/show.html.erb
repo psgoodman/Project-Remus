@@ -1,8 +1,6 @@
 <div class="row" id="title">
   <div class="small-8 large-centered column" >
     <h2 id="system_name"><%= @system.name%></h2>
-
-
   </div>
 </div>
 
@@ -19,22 +17,39 @@
           </li>
         <%end%>
         </ul>
+      </div>
+    </div>
 
-    <h3>System Contents:</h3>
-    <ul id="contents">
-      <% @system.units.each do |unit| %>
-        <li id="unit-<%= unit.id %>" data-unit-id="<%= unit.id %>"><%=unit.name%>
-          <%- unless unit.destination == @system -%>
-            - Destination: <%=unit.destination.name%>
-          <%- end -%>
-          <div class="actions">
-            <%= button_to "Delete Unit", unit_path(unit),
-              method: :delete, form: { data: { 'unit' => 'delete' } }%>
-          </div>
-          </li>
-      <%end%>
-    </ul>
+    <div class="row">
+      <div class="large-4 small-6 columns">
 
+        <h3>System Contents:</h3>
+        <ul id="contents">
+          <% @system.units.each do |unit| %>
+            <li id="unit-<%= unit.id %>" data-unit-id="<%= unit.id %>"><%=unit.name%>
+              <%- unless unit.destination == @system -%>
+                - Destination: <%=unit.destination.name%>
+              <%- end -%>
+              <div class="actions">
+                <%= button_to "Delete Unit", unit_path(unit),
+                  method: :delete, form: { data: { 'unit' => 'delete' } }%>
+              </div>
+              </li>
+          <%end%>
+        </ul>
+      </div>
+    </dif>
+
+    <div class="row">
+      <div class="large-4 small-6 columns">
+        <div class="actions">
+          <%= button_to "Issue Move Orders", new_galaxy_system_move_path(@system.galaxy, @system), { method: :get} %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-4 small-6 columns">
     <h4>Create Unit:</h4>
 
     <%= form_for(@unit, data: {unit: 'create'}) do |f| %>

@@ -9,6 +9,8 @@ class System < ActiveRecord::Base
   validates :name, presence: true, uniqueness: {scope: :galaxy_id}
   validates :galaxy_id, presence: true
 
+  accepts_nested_attributes_for :units
+
   def populate
     new_pop = 0
     census.times do
