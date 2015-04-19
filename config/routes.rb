@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :systems, only: [:show, :update] do
       resources :moves, only: [:new]
     end
+    resources :moves, only: [:create]
   end
   resources :units, only: [:create, :destroy]
 

@@ -16,5 +16,6 @@
   end%>
 </svg>
 <div class="actions">
+  <%= button_to "Resolve Next Turn", galaxy_moves_path(@galaxy), method: :post %>
   <%= button_to "Delete This Galaxy", @galaxy, method: :delete, data: { confirm: "Are you sure you want to delete this galaxy?" }%>
 </div>

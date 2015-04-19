@@ -16,8 +16,8 @@ class Unit < ActiveRecord::Base
   end
 
   def move
-    location.contents.delete(self)
-    destination.contents << self
-    location = destination
+    destination.units << self
+    system = destination
+    save
   end
 end
