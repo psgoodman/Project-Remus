@@ -1,4 +1,6 @@
 class UnitsController < ApplicationController
+  before_action :authenticate_gm!, only: [:create, :destroy]
+
   def create
     @system = System.find(params[:unit][:system_id])
     @unit = Unit.new(unit_params)
@@ -6,7 +8,6 @@ class UnitsController < ApplicationController
 
     respond_to do |format|
       if @unit.save
-        format.html { redirect_to :back, notice: "Unit Created" }
         format.json { render json: @unit }
       else
         format.html { render "systems/show" }
@@ -30,7 +31,6 @@ class UnitsController < ApplicationController
     @unit = Unit.find(params[:id])
     @system = @unit.system
     @unit.destroy
-    flash[:notice] = "Unit Destroyed"
     respond_to do |format|
       format.html { redirect_to galaxy_system_path(@system.galaxy, @system) }
       format.json { head :no_content }
@@ -38,6 +38,14 @@ class UnitsController < ApplicationController
   end
 
   private
+
+  def authenticate_gm!
+    if !user_signed_in?
+      raise ActionController::RoutingError.new("Not Found")
+    elsif current_user.authority != "admin" && current_user != @galaxy.gm
+      raise ActionController::RoutingError.new("Not Found")
+    end
+  end
 
   def unit_params
     params.require(:unit).permit(:name, :system_id, :destination_id)

@@ -1,4 +1,7 @@
 class MovesController < ApplicationController
+  before_action :authenticate_user
+  before_action :authenticate_gm!, only: [:create]
+
   def new
     @system = System.find(params[:system_id])
   end
@@ -12,5 +15,15 @@ class MovesController < ApplicationController
       system.save
     end
     redirect_to @galaxy
+  end
+
+  protected
+
+  def authenticate_gm!
+    if !user_signed_in?
+      raise ActionController::RoutingError.new("Not Found")
+    elsif current_user.authority != "admin" && current_user != @galaxy.gm
+      raise ActionController::RoutingError.new("Not Found")
+    end
   end
 end

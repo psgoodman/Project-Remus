@@ -4,7 +4,11 @@ require 'csv'
 class Galaxy < ActiveRecord::Base
 
   has_many :systems
+  belongs_to :gm,
+    class_name: "User",
+    foreign_key: :gm_id
 
+  validates :gm, presence: true
   validates :name, presence: true, uniqueness: true
 
   def systems_by_rings

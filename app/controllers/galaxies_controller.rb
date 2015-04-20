@@ -1,6 +1,8 @@
 class GalaxiesController < ApplicationController
-
   include GalaxiesHelper
+
+  before_action :authenticate_user, only: [:new, :create]
+  before_action :authenticate_gm!, only: [:destroy]
 
   def index
     @galaxies = Galaxy.all
@@ -15,7 +17,11 @@ class GalaxiesController < ApplicationController
   end
 
   def create
-    @galaxy = Galaxy.new(name: galaxy_params[:name], rings: galaxy_params[:rings].to_i)
+    @galaxy = Galaxy.new(
+        name: galaxy_params[:name],
+        rings: galaxy_params[:rings].to_i,
+        gm: current_user
+      )
     constructor = GalaxyConstructor.new(galaxy_params[:rings].to_i)
     @galaxy.save
     @galaxy.systems << constructor.systems.flatten
@@ -37,6 +43,15 @@ class GalaxiesController < ApplicationController
   end
 
   protected
+
+  def authenticate_gm!
+    if !user_signed_in?
+      raise ActionController::RoutingError.new("Not Found")
+    elsif current_user.authority != "admin" && current_user != @galaxy.gm
+      raise ActionController::RoutingError.new("Not Found")
+    end
+  end
+
   def galaxy_params
     params.require(:galaxy).permit(:name, :rings)
   end

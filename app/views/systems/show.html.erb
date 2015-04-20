@@ -30,11 +30,13 @@
               <%- unless unit.destination == @system -%>
                 - Destination: <%=unit.destination.name%>
               <%- end -%>
-              <div class="actions">
-                <%= button_to "Delete Unit", unit_path(unit),
-                  method: :delete, form: { data: { 'unit' => 'delete' } }%>
-              </div>
-              </li>
+              <%- if current_user == @system.galaxy.gm -%>
+                <div class="actions">
+                  <%= button_to "Delete Unit", unit_path(unit),
+                    method: :delete, form: { data: { 'unit' => 'delete' } }%>
+                </div>
+              <%- end -%>
+            </li>
           <%end%>
         </ul>
       </div>
@@ -47,24 +49,25 @@
         </div>
       </div>
     </div>
+    <%- if current_user == @system.galaxy.gm -%>
+      <div class="row">
+        <div class="large-4 small-6 columns">
+          <h4>Create Unit:</h4>
 
-    <div class="row">
-      <div class="large-4 small-6 columns">
-    <h4>Create Unit:</h4>
+          <%= form_for(@unit, data: {unit: 'create'}) do |f| %>
+            <div class="field">
+              <%= f.label :name, "Unit Name" %>
+              <%= f.text_field :name %>
+            </div>
 
-    <%= form_for(@unit, data: {unit: 'create'}) do |f| %>
-      <div class="field">
-        <%= f.label :name, "Unit Name" %>
-        <%= f.text_field :name %>
+            <%= f.hidden_field(:system_id, value: @system.id) %>
+
+            <div class="actions">
+              <%= f.submit "Create Unit" %>
+            </div>
+          <% end %>
+        </div>
       </div>
-
-      <%= f.hidden_field(:system_id, value: @system.id) %>
-
-      <div class="actions">
-        <%= f.submit "Create Unit" %>
-      </div>
-    <% end %>
-      </div>
-    </div>
+    <%- end -%>
   </div>
 </div>
