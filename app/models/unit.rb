@@ -17,7 +17,7 @@ class Unit < ActiveRecord::Base
 
   def move
     destination.units << self
-    system = destination
+    self.system = destination
     save
   end
 end
