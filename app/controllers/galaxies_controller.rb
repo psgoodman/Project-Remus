@@ -26,7 +26,9 @@ class GalaxiesController < ApplicationController
       galaxy: @galaxy,
       user: @galaxy.gm
     )
-    constructor = GalaxyConstructor.new(galaxy_params[:rings].to_i, base_faction)
+    constructor = GalaxyConstructor.new(
+      galaxy_params[:rings].to_i, base_faction
+      )
     @galaxy.save
     @galaxy.systems << constructor.systems.flatten
     if @galaxy.save
