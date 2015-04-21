@@ -11,8 +11,10 @@
         <%options += @system.linked_systems%>
         <%options += [@system]%>
       <%= f.fields_for :units do |ff| %>
-        <%= ff.label :destination_id, @system.units[i].name%>
-        <%= ff.collection_select :destination_id, options, :id, :name %>
+        <% if @system.units[i].faction.user == current_user || current_user == @system.galaxy.gm %>
+          <%= ff.label :destination_id, @system.units[i].name%>
+          <%= ff.collection_select :destination_id, options, :id, :name %>
+        <% end %>
         <%- i += 1 -%>
       <% end %>
       <div class="actions">

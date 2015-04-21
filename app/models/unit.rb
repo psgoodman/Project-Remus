@@ -4,7 +4,9 @@ class Unit < ActiveRecord::Base
   belongs_to :destination,
     class_name: "System",
     foreign_key: :destination_id
+  belongs_to :faction
 
+  validates :system, presence: true
   validates :name, presence: true
 
   def set_destination(target)

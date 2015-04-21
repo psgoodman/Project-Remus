@@ -21,13 +21,17 @@ class GalaxiesController < ApplicationController
       rings: galaxy_params[:rings].to_i,
       gm: current_user
     )
-    constructor = GalaxyConstructor.new(galaxy_params[:rings].to_i)
+    base_faction = Faction.create(
+      name: "Unowned",
+      galaxy: @galaxy,
+      user: @galaxy.gm
+    )
+    constructor = GalaxyConstructor.new(galaxy_params[:rings].to_i, base_faction)
     @galaxy.save
     @galaxy.systems << constructor.systems.flatten
-    @galaxy.save
     if @galaxy.save
       build_links(@galaxy.systems_by_rings)
-      flash[:notice] = 'galaxy added.'
+      flash[:notice] = 'Galaxy Added.'
       redirect_to '/galaxies'
     else
       render :new

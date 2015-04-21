@@ -1,0 +1,23 @@
+<%- if @faction.errors.present? -%>
+  <%- @faction.errors.full_messages.each do |error| -%>
+    <ul>
+      <li><%= error %></li>
+    </ul>
+  <% end %>
+<% end %>
+<h1>Add A New Faction</h1>
+
+<div class="row">
+  <div class="large-4 small-6 columns">
+    <%= form_for [@galaxy, @faction] do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :user, "Player" %>
+      <%= f.collection_select :user_id, User.all, :id, :username %>
+      <div class="actions">
+        <%= f.submit "Create Faction" %>
+      </div>
+    <%- end -%>
+  </div>
+</div>

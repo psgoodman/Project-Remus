@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :moves, only: [:new]
     end
     resources :moves, only: [:create]
+    resources :factions, only: [:index, :new, :create]
   end
   resources :units, only: [:create, :destroy]
 
