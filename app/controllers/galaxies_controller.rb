@@ -17,10 +17,10 @@ class GalaxiesController < ApplicationController
 
   def create
     @galaxy = Galaxy.new(
-        name: galaxy_params[:name],
-        rings: galaxy_params[:rings].to_i,
-        gm: current_user
-      )
+      name: galaxy_params[:name],
+      rings: galaxy_params[:rings].to_i,
+      gm: current_user
+    )
     constructor = GalaxyConstructor.new(galaxy_params[:rings].to_i)
     @galaxy.save
     @galaxy.systems << constructor.systems.flatten

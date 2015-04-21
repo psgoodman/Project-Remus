@@ -12,7 +12,9 @@ class UnitsController < ApplicationController
           format.json { render json: @unit }
         else
           format.html { render "systems/show" }
-          format.json { render json: @unit.errors, status: :unprocessable_entity }
+          format.json {
+            render json: @unit.errors, status: :unprocessable_entity
+          }
         end
       end
     end

@@ -1,5 +1,4 @@
 class SystemsController < ApplicationController
-
   before_action :authenticate_gm!, only: [:edit, :update]
 
   def show
