@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'galaxies#index'
   resources :galaxies, only: [
     :index, :show, :new, :create, :destroy
   ] do
-    resources :systems, only: [:show, :update] do
+    resources :systems, only: [:show, :edit, :update] do
       resources :moves, only: [:new]
     end
     resources :moves, only: [:create]

@@ -1,6 +1,7 @@
 class GalaxiesController < ApplicationController
-
   include GalaxiesHelper
+
+  before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @galaxies = Galaxy.all
@@ -15,7 +16,11 @@ class GalaxiesController < ApplicationController
   end
 
   def create
-    @galaxy = Galaxy.new(name: galaxy_params[:name], rings: galaxy_params[:rings].to_i)
+    @galaxy = Galaxy.new(
+      name: galaxy_params[:name],
+      rings: galaxy_params[:rings].to_i,
+      gm: current_user
+    )
     constructor = GalaxyConstructor.new(galaxy_params[:rings].to_i)
     @galaxy.save
     @galaxy.systems << constructor.systems.flatten
@@ -30,13 +35,18 @@ class GalaxiesController < ApplicationController
   end
 
   def destroy
-    @galaxy = Galaxy.find(params[:id])
+    if current_user.authority == "admin"
+      @galaxy = Galaxy.find(params[:id])
+    else
+      @galaxy = Galaxy.find_by!(gm: current_user, id: params[:id])
+    end
     @galaxy.destroy
     flash[:notice] = 'galaxy deleted.'
     redirect_to'/galaxies'
   end
 
   protected
+
   def galaxy_params
     params.require(:galaxy).permit(:name, :rings)
   end

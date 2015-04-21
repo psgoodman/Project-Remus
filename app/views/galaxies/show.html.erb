@@ -12,10 +12,12 @@
       link_coords = convert_coords(link.ring, link.angle) %>
 
       <line x1="<%=rect_coords[0]%>" y1="<%=rect_coords[1]%>" x2="<%=link_coords[0]%>" y2="<%=link_coords[1]%>" style="stroke:rgb(236,156,44);stroke-width:2" />
-    <%end
-  end%>
+    <%end%>
+  <%end%>
 </svg>
-<div class="actions">
-  <%= button_to "Resolve Next Turn", galaxy_moves_path(@galaxy), method: :post %>
-  <%= button_to "Delete This Galaxy", @galaxy, method: :delete, data: { confirm: "Are you sure you want to delete this galaxy?" }%>
-</div>
+<% if current_user == @galaxy.gm || current_user.authority == "admin" %>
+  <div class="actions">
+    <%= button_to "Resolve Next Turn", galaxy_moves_path(@galaxy), method: :post %>
+    <%= button_to "Delete This Galaxy", @galaxy, method: :delete, data: { confirm: "Are you sure you want to delete this galaxy?" }%>
+  </div>
+<% end %>
