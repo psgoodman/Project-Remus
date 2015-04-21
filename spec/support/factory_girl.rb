@@ -11,7 +11,7 @@ FactoryGirl.define do
   factory :galaxy do
     sequence(:name) { |n| "galaxy#{n}" }
     rings 2
-    gm FactoryGirl.create(:user)
+    association :gm, factory: :user
   end
 
   factory :system do
