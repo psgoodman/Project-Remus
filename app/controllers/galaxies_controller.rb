@@ -1,8 +1,7 @@
 class GalaxiesController < ApplicationController
   include GalaxiesHelper
 
-  before_action :authenticate_user, only: [:new, :create]
-  before_action :authenticate_gm!, only: [:destroy]
+  before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @galaxies = Galaxy.all
@@ -36,21 +35,17 @@ class GalaxiesController < ApplicationController
   end
 
   def destroy
-    @galaxy = Galaxy.find(params[:id])
+    if current_user.authority == "admin"
+      @galaxy = Galaxy.find(params[:id])
+    else
+      @galaxy = Galaxy.find_by!(gm: current_user, id: params[:id])
+    end
     @galaxy.destroy
     flash[:notice] = 'galaxy deleted.'
     redirect_to'/galaxies'
   end
 
   protected
-
-  def authenticate_gm!
-    if !user_signed_in?
-      raise ActionController::RoutingError.new("Not Found")
-    elsif current_user.authority != "admin" && current_user != @galaxy.gm
-      raise ActionController::RoutingError.new("Not Found")
-    end
-  end
 
   def galaxy_params
     params.require(:galaxy).permit(:name, :rings)
