@@ -9,7 +9,7 @@ class MovesController < ApplicationController
     if current_user.authority == "admin"
       @galaxy = Galaxy.find(params[:id])
     else
-      @galaxy = Galaxy.find_by!(gm: current_user, id: params[:id])
+      @galaxy = Galaxy.find_by!(gm: current_user, id: params[:galaxy_id])
     end
     @galaxy.systems.each do |system|
       system.units.each do |unit|

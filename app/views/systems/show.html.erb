@@ -6,6 +6,7 @@
 
 <div class="row">
   <div class="large-12 columns">
+    <p>Controlled By: <%= @system.faction.name %> </p>
     <p>RAW: <%= @system.raw%><p>
     <p>Max Census: <%= @system.max_census%><p>
     <div class="row">
@@ -18,15 +19,13 @@
         <%end%>
         </ul>
       </div>
-    </div>
 
-    <div class="row">
       <div class="large-4 small-6 columns">
 
         <h3>System Contents:</h3>
         <ul id="contents">
           <% @system.units.each do |unit| %>
-            <li id="unit-<%= unit.id %>" data-unit-id="<%= unit.id %>"><%=unit.name%>
+            <li id="unit-<%= unit.id %>" data-unit-id="<%= unit.id %>"><%="#{unit.faction.name} #{unit.name}"%>
               <%- unless unit.destination == @system -%>
                 - Destination: <%=unit.destination.name%>
               <%- end -%>
@@ -39,19 +38,10 @@
             </li>
           <%end%>
         </ul>
-      </div>
-    </dif>
-
-    <div class="row">
-      <div class="large-4 small-6 columns">
         <div class="actions">
           <%= button_to "Issue Move Orders", new_galaxy_system_move_path(@system.galaxy, @system), { method: :get} %>
         </div>
-      </div>
-    </div>
-    <%- if current_user == @system.galaxy.gm -%>
-      <div class="row">
-        <div class="large-4 small-6 columns">
+        <%- if current_user == @system.galaxy.gm -%>
           <h4>Create Unit:</h4>
 
           <%= form_for(@unit, data: {unit: 'create'}) do |f| %>
@@ -60,14 +50,19 @@
               <%= f.text_field :name %>
             </div>
 
+            <div class="field">
+              <%= f.label :faction_id, "Faction" %>
+              <%= f.collection_select :faction_id, @system.galaxy.factions, :id, :name %>
+            </div>
+
             <%= f.hidden_field(:system_id, value: @system.id) %>
 
             <div class="actions">
               <%= f.submit "Create Unit" %>
             </div>
           <% end %>
-        </div>
+        <%- end -%>
       </div>
-    <%- end -%>
+    </div>
   </div>
 </div>

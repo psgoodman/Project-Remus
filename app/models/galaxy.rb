@@ -8,6 +8,9 @@ class Galaxy < ActiveRecord::Base
     class_name: "User",
     foreign_key: :gm_id
 
+  has_many :factions
+  has_many :users, through: :factions
+
   validates :gm, presence: true
   validates :name, presence: true, uniqueness: true
 

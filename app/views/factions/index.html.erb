@@ -1,0 +1,24 @@
+<div class="row" id="title">
+  <div class="small-8 large-centered column" >
+    <h1> Factions Present in <%= @galaxy.name %> </h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <ul>
+      <% @factions.each do |faction| %>
+        <li>
+          <%= faction.name %>
+          <ul>
+            <li>Controlled By: <%= faction.user.username %></li>
+            <li> Units: <%= faction.units.count %></li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+    <% if current_user.authority == "admin" || current_user == @galaxy.gm %>
+      <%= link_to "Add New Faction", new_galaxy_faction_path %>
+    <% end %>
+  </div>
+</div>

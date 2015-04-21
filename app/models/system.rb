@@ -1,6 +1,7 @@
 class System < ActiveRecord::Base
 
   belongs_to :galaxy
+  belongs_to :faction
   has_many :units
   has_many :destination_links, class_name: "Link", foreign_key: :destination_system_id
   has_many :origin_links, class_name: "Link", foreign_key: :origin_system_id
@@ -8,6 +9,7 @@ class System < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {scope: :galaxy_id}
   validates :galaxy_id, presence: true
+  validates :faction, presence: true
 
   accepts_nested_attributes_for :units
 

@@ -1,6 +1,7 @@
 class GalaxyConstructor
 
-  def initialize(rings)
+  def initialize(rings, base_faction)
+    @faction = base_faction
     name_intake = CSV.read('lib/assets/names.csv')
     @names = []
 
@@ -19,7 +20,14 @@ class GalaxyConstructor
     raw = rand(10) + rand(10) + 2
     angle = rand
     System.new({
-      name: name, census: 0, max_census: max_census, raw: raw, infrastructure: 0, ring: ring, angle: angle
+      name: name,
+      census: 0,
+      max_census: max_census,
+      raw: raw,
+      infrastructure: 0,
+      ring: ring,
+      angle: angle,
+      faction: @faction
     })
   end
 

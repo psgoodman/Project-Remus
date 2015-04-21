@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420191734) do
+ActiveRecord::Schema.define(version: 20150421184753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "factions", force: :cascade do |t|
+    t.string  "name",      null: false
+    t.integer "user_id",   null: false
+    t.integer "galaxy_id", null: false
+  end
+
+  add_index "factions", ["name", "galaxy_id"], name: "index_factions_on_name_and_galaxy_id", unique: true, using: :btree
 
   create_table "galaxies", force: :cascade do |t|
     t.string  "name",  null: false
@@ -40,12 +48,14 @@ ActiveRecord::Schema.define(version: 20150420191734) do
     t.datetime "updated_at"
     t.integer  "ring"
     t.float    "angle"
+    t.integer  "faction_id",     null: false
   end
 
   create_table "units", force: :cascade do |t|
     t.string  "name",           null: false
     t.integer "system_id"
     t.integer "destination_id"
+    t.integer "faction_id",     null: false
   end
 
   create_table "users", force: :cascade do |t|

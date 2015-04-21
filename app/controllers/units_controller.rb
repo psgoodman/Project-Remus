@@ -45,6 +45,8 @@ class UnitsController < ApplicationController
   private
 
   def unit_params
-    params.require(:unit).permit(:name, :system_id, :destination_id)
+    params.require(:unit).permit(
+      :name, :system_id, :destination_id, :faction_id
+      )
   end
 end
