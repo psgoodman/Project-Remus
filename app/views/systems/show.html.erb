@@ -3,7 +3,9 @@
     <h2 id="system_name"><%= @system.name%></h2>
   </div>
 </div>
-
+<div class="row" class="back-to-map">
+  <p><%= link_to "Back to #{@system.galaxy.name} Map", @system.galaxy %></p>
+<div>
 <div class="row">
   <div class="large-12 columns">
     <p>Controlled By: <%= @system.faction.name %> </p>
@@ -18,6 +20,9 @@
           </li>
         <%end%>
         </ul>
+        <% if current_user == @system.galaxy.gm %>
+          <%= link_to "Edit This System", edit_system_path(@system) %>
+        <% end %>
       </div>
 
       <div class="large-4 small-6 columns">

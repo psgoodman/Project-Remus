@@ -13,7 +13,7 @@
   <%end%>
   <% @galaxy.systems.each do |system|
     rect_coords = convert_coords(system.ring, system.angle)%>
-    <a xlink:href="<%=galaxy_system_path(@galaxy, system)%>" target="_blank">
+    <a xlink:href="<%=galaxy_system_path(@galaxy, system)%>">
       <text x="<%=rect_coords[0]+8%>" y="<%=rect_coords[1]-14%>" fill="white"><%=system.name%></text>
     </a>
   <% end %>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :galaxies, only: [
     :index, :show, :new, :create, :destroy
   ] do
-    resources :systems, only: [:show, :edit, :update] do
+    resources :systems, only: [:show,] do
       resources :moves, only: [:new]
     end
     resources :moves, only: [:create]
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show]
   resources :units, only: [:create, :destroy]
+  resources :systems, only: [:edit, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

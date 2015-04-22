@@ -15,7 +15,11 @@ class SystemsController < ApplicationController
       if @system.update(system_params)
         redirect_to galaxy_system_path(@system.galaxy, @system)
       else
-        render 'moves#new'
+        if system_params[:units_attributes]
+          render 'moves#new'
+        else
+          render :edit
+        end
       end
     end
   end
@@ -23,6 +27,18 @@ class SystemsController < ApplicationController
   private
 
   def system_params
-    params.require(:system).permit(units_attributes: [:id, :destination_id])
+    if current_user == @system.galaxy.gm
+      params.require(:system).permit(
+        :name,
+        :census,
+        :max_census,
+        :raw,
+        :infrastructure,
+        :faction_id,
+        units_attributes: [:id, :destination_id]
+      )
+    else
+      params.require(:system).permit(units_attributes: [:id, :destination_id])
+    end
   end
 end
