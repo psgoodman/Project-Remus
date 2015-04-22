@@ -9,7 +9,9 @@ class UnitsController < ApplicationController
 
       respond_to do |format|
         if @unit.save
-          format.html { redirect_to galaxy_system_path(@system) }
+          format.html {
+            redirect_to galaxy_system_path(@system.galaxy, @system)
+          }
           format.json { render json: @unit }
         else
           format.html { render "systems/show" }
