@@ -9,6 +9,7 @@ class UnitsController < ApplicationController
 
       respond_to do |format|
         if @unit.save
+          format.html { render "systems/show" }
           format.json { render json: @unit }
         else
           format.html { render "systems/show" }
