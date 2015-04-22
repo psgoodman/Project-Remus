@@ -1,0 +1,33 @@
+<div class="row" id="title">
+  <div class="small-8 large-centered column" >
+    <h2 id="system_name">Edit <%= @system.name%></h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-4 small-6 columns">
+    <%= form_for @system do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :census %>
+      <%= f.number_field :census %>
+
+      <%= f.label :max_census %>
+      <%= f.number_field :max_census %>
+
+      <%= f.label :raw %>
+      <%= f.number_field :raw %>
+
+      <%= f.label :infrastructure %>
+      <%= f.number_field :infrastructure %>
+
+      <%= f.label :faction_id, "Controlling Faction" %>
+      <%= f.collection_select :faction_id, @system.galaxy.factions, :id, :name %>
+
+      <div class="actions">
+        <%= f.submit "Save Changes" %>
+      </div>
+    <%- end -%>
+  </div>
+</div>

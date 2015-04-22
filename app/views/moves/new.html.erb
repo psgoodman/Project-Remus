@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="small-8 large-centered column">
-    <%= form_for  [@system.galaxy, @system] do |f| %>
+    <%= form_for @system do |f| %>
       <%-i = 0 -%>
         <%options = []%>
         <%options += @system.linked_systems%>
