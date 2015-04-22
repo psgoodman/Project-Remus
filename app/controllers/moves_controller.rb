@@ -15,6 +15,7 @@ class MovesController < ApplicationController
       system.units.each do |unit|
         unit.move
       end
+      system.populate
       system.save
     end
     redirect_to @galaxy

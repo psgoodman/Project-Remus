@@ -9,8 +9,10 @@
 <div class="row">
   <div class="large-12 columns">
     <p>Controlled By: <%= @system.faction.name %> </p>
+    <p>Census: <%= @system.census%>/<%= @system.max_census%><p>
     <p>RAW: <%= @system.raw%><p>
-    <p>Max Census: <%= @system.max_census%><p>
+    <p>Infrastructure: <%= @system.infrastructure%><p>
+    <p>Income: <%= @system.income%><p>
     <div class="row">
       <div class="large-4 small-6 columns">
         <h3>Connected Systems:</h3>
