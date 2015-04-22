@@ -8,8 +8,9 @@ Rails.application.routes.draw do
       resources :moves, only: [:new]
     end
     resources :moves, only: [:create]
-    resources :factions, only: [:index, :new, :create]
+    resources :factions, only: [:index, :show, :new, :create]
   end
+  resources :users, only: [:show]
   resources :units, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.

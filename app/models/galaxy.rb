@@ -3,12 +3,12 @@ require 'csv'
 
 class Galaxy < ActiveRecord::Base
 
-  has_many :systems
+  has_many :systems, dependent: :destroy
   belongs_to :gm,
     class_name: "User",
     foreign_key: :gm_id
 
-  has_many :factions
+  has_many :factions, dependent: :destroy
   has_many :users, through: :factions
 
   validates :gm, presence: true

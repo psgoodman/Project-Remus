@@ -12,6 +12,7 @@
           <%= faction.name %>
           <ul>
             <li>Controlled By: <%= faction.user.username %></li>
+            <li> Systems Controlled: <%= faction.systems.count %></li>
             <li> Units: <%= faction.units.count %></li>
           </ul>
         </li>

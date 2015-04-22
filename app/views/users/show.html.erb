@@ -1,0 +1,18 @@
+<div class="row" id="title">
+  <div class="small-8 large-centered column" >
+    <h1><%= @user.username %> </h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h3>Factions Controlled:</h3>
+
+    <ul>
+      <% @user.factions.each do |faction| %>
+        <li><% link_to faction.name, galaxy_path(faction.galaxy) %></li>
+      <% end %>
+    </ul>
+
+  </div>
+</div>
