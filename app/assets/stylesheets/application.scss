@@ -16,11 +16,23 @@
  */
 @import "foundation_and_overrides";
 
+@font-face {
+  font-family: "Oswald";
+  src: font-url("Oswald-Regular.ttf");
+}
+
+@font-face {
+  font-family: "DroidSans";
+  src: font-url("DroidSans.ttf");
+}
+
 $background-color: #000022;
 $font-color: #ddddcc;
 $visited-color: #cc4411;
 $hover-color: #999999;
 $unvisited-color: #ec9c2c;
+$oswald-font: "Oswald", sans-serif;
+$droidsans-font: "DroidSans", sans-serif;
 
 body {
   background: $background-color;
@@ -34,6 +46,7 @@ h4,
 h5,
 h6 {
   color: $font-color;
+  font-family: $oswald-font;
   text-align: center;
 }
 
@@ -41,6 +54,13 @@ svg text {
   color: $font-color;
   font-size: 110%;
   z-index: 1;
+}
+
+p,
+li,
+a,
+input {
+  font-family: $droidsans-font;
 }
 
 a:link {
@@ -76,4 +96,14 @@ a:hover {
 
 .back-to-map {
   padding: 5px;
+}
+
+.footer {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.flash {
+  padding: 10px;
+  padding-left: 20px;
 }

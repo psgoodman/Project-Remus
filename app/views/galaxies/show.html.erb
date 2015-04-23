@@ -1,18 +1,18 @@
 
 <h1><%=@galaxy.name%> Map</h1>
-<svg width="1028" height="720">
+<svg width="<%= 200 * (@galaxy.rings + 1) %>" height="<%= 200 * (@galaxy.rings + 1) %>">
   <% @galaxy.systems.each do |system|
-    rect_coords = convert_coords(system.ring, system.angle)%>
+    rect_coords = convert_coords(system.ring, system.angle, @galaxy.rings)%>
 
     <circle cx="<%=rect_coords[0]%>" cy="<%=rect_coords[1]%>" r="15" stroke="orange" stroke-width="3" fill="white" />
     <% system.linked_systems.each do |link|
-      link_coords = convert_coords(link.ring, link.angle) %>
+      link_coords = convert_coords(link.ring, link.angle, @galaxy.rings) %>
 
       <line x1="<%=rect_coords[0]%>" y1="<%=rect_coords[1]%>" x2="<%=link_coords[0]%>" y2="<%=link_coords[1]%>" style="stroke:rgb(236,156,44);stroke-width:2" />
     <%end%>
   <%end%>
   <% @galaxy.systems.each do |system|
-    rect_coords = convert_coords(system.ring, system.angle)%>
+    rect_coords = convert_coords(system.ring, system.angle, @galaxy.rings)%>
     <a xlink:href="<%=galaxy_system_path(@galaxy, system)%>">
       <text x="<%=rect_coords[0]+8%>" y="<%=rect_coords[1]-14%>" fill="white"><%=system.name%></text>
     </a>
