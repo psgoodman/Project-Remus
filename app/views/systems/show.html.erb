@@ -13,6 +13,9 @@
     <p>RAW: <%= @system.raw%><p>
     <p>Infrastructure: <%= @system.infrastructure%><p>
     <p>Income: <%= @system.income%><p>
+    <% if current_user == @system.galaxy.gm %>
+      <%= link_to "Edit This System", edit_system_path(@system) %>
+    <% end %>
     <div class="row">
       <div class="large-5 small-6 columns">
         <h3>Connected Systems:</h3>
@@ -22,9 +25,6 @@
           </li>
         <%end%>
         </ul>
-        <% if current_user == @system.galaxy.gm %>
-          <%= link_to "Edit This System", edit_system_path(@system) %>
-        <% end %>
       </div>
 
       <div class="large-5 small-6 columns">
