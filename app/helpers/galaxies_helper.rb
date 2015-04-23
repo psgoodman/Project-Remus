@@ -84,8 +84,8 @@ module GalaxiesHelper
   def convert_coords(ring, angle, size)
     side_length = 200 * (size + 1)
     complex = Complex.polar(ring, angle*2*Math::PI)
-    x = complex.real * 100 + side_length/2
-    y = complex.imag * 100 + side_length/2
+    x = complex.real * 100 + side_length / 2
+    y = complex.imag * 100 + side_length / 2
     [x,y]
   end
 
