@@ -26,7 +26,6 @@ $(document).ready(function() {
         $newForm.append($unitButton);
         var $unitListing = $('<li>').addClass('unit').attr('data-unit-id',
           unit.id).html(unit.faction);
-        debugger
         $unitListing.append(unit.name);
         $unitListing.append($newForm);
         $("#contents").append($unitListing);
