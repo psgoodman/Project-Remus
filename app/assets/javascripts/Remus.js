@@ -25,7 +25,8 @@ $(document).ready(function() {
         $newForm.append($authentField);
         $newForm.append($unitButton);
         var $unitListing = $('<li>').addClass('unit').attr('data-unit-id',
-          unit.id).html(unit.name);
+          unit.id).html(unit.faction);
+        $unitListing.append(unit.name);
         $unitListing.append($newForm);
         $("#contents").append($unitListing);
       }

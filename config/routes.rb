@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :moves, only: [:create]
     resources :factions, only: [:index, :show, :new, :create]
   end
+  resources :factions, only: [:destroy]
   resources :users, only: [:show]
   resources :units, only: [:create, :destroy]
   resources :systems, only: [:edit, :update]

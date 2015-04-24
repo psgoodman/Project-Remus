@@ -13,7 +13,7 @@
     <ul>
       <% @factions.each do |faction| %>
         <li>
-          <%= faction.name %>
+          <%= link_to faction.name, galaxy_faction_path(@galaxy, faction) %>
           <ul>
             <li>Controlled By: <%= faction.user.username %></li>
             <li> Systems Controlled: <%= faction.systems.count %></li>
