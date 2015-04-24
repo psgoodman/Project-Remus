@@ -11,15 +11,13 @@ class SystemsController < ApplicationController
 
   def update
     @system = System.find(params[:id])
-    if current_user == @system.galaxy.gm
-      if @system.update(system_params)
-        redirect_to galaxy_system_path(@system.galaxy, @system)
+    if @system.update(system_params)
+      redirect_to galaxy_system_path(@system.galaxy, @system)
+    else
+      if system_params[:units_attributes]
+        render 'moves#new'
       else
-        if system_params[:units_attributes]
-          render 'moves#new'
-        else
-          render :edit
-        end
+        render :edit
       end
     end
   end
