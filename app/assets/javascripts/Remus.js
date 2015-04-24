@@ -8,7 +8,7 @@ $(document).ready(function() {
       data: $($form).serialize(),
       dataType: 'json',
       success: function(unit) {
-        var action = '/units/'+ unit.id;
+        var action = '/units/'+ unit.unit.id;
         var $newForm = $('<form>').attr({
           action: action,
           method: 'post',
@@ -27,8 +27,8 @@ $(document).ready(function() {
         var $buttonDiv = $('<div>').attr({class: 'actions'});
         $buttonDiv.append($newForm);
         var $unitListing = $('<li>').addClass('unit').attr('data-unit-id',
-          unit.id).html(unit.faction);
-        $unitListing.append(unit.name);
+          unit.unit.id).html(unit.faction);
+        $unitListing.append(" " + unit.unit.name);
         $unitListing.append($buttonDiv);
         $("#contents").append($unitListing);
         initDeleteHandler();
