@@ -12,7 +12,9 @@ class UnitsController < ApplicationController
           format.html {
             redirect_to galaxy_system_path(@system.galaxy, @system)
           }
-          format.json { render json: @unit }
+          format.json {
+            render json: { unit: @unit, faction: @unit.faction.name}
+          }
         else
           format.html { render "systems/show" }
           format.json {
