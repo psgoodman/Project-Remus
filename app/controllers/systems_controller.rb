@@ -13,7 +13,7 @@ class SystemsController < ApplicationController
     @system = System.find(params[:id])
     if @system.update(system_params)
       @system.units.each do |unit|
-        unless current_user == @system.gm ||
+        unless current_user == @system.galaxy.gm ||
             current_user == unit.faction.user &&
             @system.links.where(destination_system: target).count > 0
           unit.destination == @system
