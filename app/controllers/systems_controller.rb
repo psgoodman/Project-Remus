@@ -12,6 +12,13 @@ class SystemsController < ApplicationController
   def update
     @system = System.find(params[:id])
     if @system.update(system_params)
+      @system.units.each do |unit|
+        unless current_user == @system.gm ||
+            current_user == unit.faction.user &&
+            @system.links.where(destination_system: target).count > 0
+          unit.destination == @system
+        end
+      end
       redirect_to galaxy_system_path(@system.galaxy, @system)
     else
       if system_params[:units_attributes]
