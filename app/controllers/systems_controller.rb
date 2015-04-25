@@ -14,8 +14,8 @@ class SystemsController < ApplicationController
     if @system.update(system_params)
       @system.units.each do |unit|
         unless current_user == @system.gm ||
-          current_user == unit.faction.user &&
-          @system.links.where(destination_system: target).count > 0
+            current_user == unit.faction.user &&
+            @system.links.where(destination_system: target).count > 0
           unit.destination == @system
         end
       end
