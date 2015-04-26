@@ -9,20 +9,21 @@
       </ul>
     <p><%= link_to "Create New Galaxy", new_galaxy_path %></p>
   </div>
+  <% if user_signed_in? %>
+    <div class="large-5 small-6 columns">
+      <h2>Games You're Running:</h2>
+      <ul>
+        <% current_user.owned_galaxies.each do |galaxy| %>
+          <li><%= link_to galaxy.name, '/galaxies/' + galaxy.to_param %></li>
+        <% end %>
+      </ul>
 
-  <div class="large-5 small-6 columns">
-    <h2>Games You're Running:</h2>
-    <ul>
-      <% current_user.owned_galaxies.each do |galaxy| %>
-        <li><%= link_to galaxy.name, '/galaxies/' + galaxy.to_param %></li>
-      <% end %>
-    </ul>
-
-    <h2>Games You're Playing:</h2>
-    <ul>
-      <% current_user.galaxies.uniq.each do |galaxy| %>
-        <li><%= link_to galaxy.name, '/galaxies/' + galaxy.to_param %></li>
-      <% end %>
-    </ul>
-  </div>
+      <h2>Games You're Playing:</h2>
+      <ul>
+        <% current_user.galaxies.uniq.each do |galaxy| %>
+          <li><%= link_to galaxy.name, '/galaxies/' + galaxy.to_param %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 </div>
