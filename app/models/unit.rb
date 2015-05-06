@@ -10,7 +10,7 @@ class Unit < ActiveRecord::Base
   validates :name, presence: true
 
   def move
-    if system.links.where(destination_system: destination).count > 0
+    if system.linked_systems.where(id: destination.id).count > 0
       destination.units << self
       self.system = destination
       save
