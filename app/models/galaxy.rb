@@ -13,6 +13,9 @@ class Galaxy < ActiveRecord::Base
 
   validates :gm, presence: true
   validates :name, presence: true, uniqueness: true
+  validates :rings, numericality: {
+    greater_than: 0, less_than: 8, only_integer: true
+  }
 
   def systems_by_rings
     current_ring = 0

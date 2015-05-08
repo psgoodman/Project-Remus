@@ -11,17 +11,13 @@ class Unit < ActiveRecord::Base
   validates :name, presence: true
   validates :unit_class, presence: true
 
-  def set_destination(target)
-    if system.links.where(destination_system: target).count > 0
-      destination = target
-    else
-      return false
-    end
-  end
-
   def move
-    destination.units << self
-    self.system = destination
-    save
+    if system.linked_systems.where(id: destination.id).count > 0
+      destination.units << self
+      self.system = destination
+      save
+    else
+      self.destination = self.system
+    end
   end
 end

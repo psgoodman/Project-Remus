@@ -8,7 +8,7 @@ $(document).ready(function() {
       data: $($form).serialize(),
       dataType: 'json',
       success: function(unit) {
-        var action = '/units/'+ unit.id;
+        var action = '/units/'+ unit.unit.id;
         var $newForm = $('<form>').attr({
           action: action,
           method: 'post',
@@ -24,14 +24,22 @@ $(document).ready(function() {
         $newForm.append($methodField);
         $newForm.append($authentField);
         $newForm.append($unitButton);
+        var $buttonDiv = $('<div>').attr({class: 'actions'});
+        $buttonDiv.append($newForm);
         var $unitListing = $('<li>').addClass('unit').attr('data-unit-id',
-          unit.id).html(unit.faction);
-        $unitListing.append(unit.name);
-        $unitListing.append($newForm);
+          unit.unit.id).html(unit.faction);
+        $unitListing.append(" " + unit.unit.name);
+        $unitListing.append($buttonDiv);
         $("#contents").append($unitListing);
+        initDeleteHandler();
       }
     });
   });
+  initDeleteHandler();
+});
+
+function initDeleteHandler() {
+  $('[data-unit-id]').off();
 
   $('[data-unit-id]').on('submit', '[data-unit="delete"]', function(event) {
     event.preventDefault();
@@ -47,4 +55,4 @@ $(document).ready(function() {
       }
     });
   });
-});
+}

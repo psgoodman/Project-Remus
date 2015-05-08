@@ -8,7 +8,7 @@
 <div>
 <div class="row">
   <div class="large-11 columns">
-    <p>Controlled By: <%= @system.faction.name %> </p>
+    <p>Controlled By: <%= link_to @system.faction.name, galaxy_faction_path(@system.galaxy, @system.faction) %> </p>
     <p>Census: <%= @system.census%>/<%= @system.max_census%><p>
     <p>RAW: <%= @system.raw%><p>
     <p>Infrastructure: <%= @system.infrastructure%><p>
