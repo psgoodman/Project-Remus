@@ -1,4 +1,12 @@
 $(document).ready(function() {
+  $('#unit_faction_id').on('change', function(event) {
+    var $faction_id = this.value;
+    $.ajax({
+      type: "GET",
+      url: //FIGURE OUT URL
+    })
+  });
+
   $('[data-unit="create"]').on('submit', function(event) {
     event.preventDefault();
     var $form = $(event.currentTarget);
