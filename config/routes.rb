@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :unit_classes, only: [:new, :create, :destroy]
   end
   resources :users, only: [:show]
-  resources :units, only: [:create, :destroy]
+  resources :units, only: [:new, :create, :destroy]
   resources :systems, only: [:edit, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.

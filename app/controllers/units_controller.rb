@@ -1,6 +1,10 @@
 class UnitsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
+  def new
+    render json:
+  end
+
   def create
     @system = System.find(params[:unit][:system_id])
     if current_user.authority == "admin" || current_user == @system.galaxy.gm

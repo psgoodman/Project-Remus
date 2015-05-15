@@ -1,10 +1,30 @@
 $(document).ready(function() {
   $('#unit_faction_id').on('change', function(event) {
-    var $faction_id = this.value;
+    var $factionId = this.value;
     $.ajax({
       type: "GET",
-      url: //FIGURE OUT URL
-    })
+      url: "/units/new",
+      data: {"faction_id": $factionId},
+      dataType: 'json',
+      success: function(classList) {
+        var $newField = $("<div>").attr({ class: 'field' });
+        var $newLabel = $("<label>").attr({ for: 'unit_unit_class' });
+        var $newSelect = $("<select>").attr({
+          name: "unit[unit_class]",
+          id: "unit_unit_class"
+        });
+        $newField.append($newLabel);
+        $newField.append($newSelect);
+        $(form#new_unit).append($newField);
+        for (var i = classList.length - 1; i >= 0; i--) {
+          var $newOption = $('<option>').attr({
+            value: classList[i]["id"]
+          });
+          $newOption.append(classList[i]["name"]);
+          $newSelect.append($newOption);
+        };
+      };
+    });
   });
 
   $('[data-unit="create"]').on('submit', function(event) {
