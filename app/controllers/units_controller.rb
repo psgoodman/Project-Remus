@@ -2,7 +2,12 @@ class UnitsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def new
-    render json:
+    @faction = Faction.find(params["faction_id"])
+    class_list = []
+    @faction.unit_classes.each do |unit_class|
+      class_list << {id: unit_class.id, name: unit_class.name}
+    end
+    render json: class_list
   end
 
   def create

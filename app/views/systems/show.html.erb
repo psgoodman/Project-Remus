@@ -64,12 +64,8 @@
 
             <%= f.hidden_field(:system_id, value: @system.id) %>
 
-            <% @system.galaxy.factions.each do |faction| %>
-              <div class="field unit-class faction-<%=faction.id%>">
-                <%= f.label :unit_class, "Unit Class" %>
-                <%= f.collection_select :unit_class, faction.unit_classes, :id, :name %>
-              </div>
-            <% end %>
+            <div class="field unit-class">
+            </div>
 
             <div class="actions">
               <%= f.submit "Create Unit" %>
