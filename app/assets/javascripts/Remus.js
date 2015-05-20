@@ -11,8 +11,8 @@ $(document).ready(function() {
         $classField.empty();
         var $newLabel = $("<label>").attr({ for: 'unit_unit_class' });
         var $newSelect = $("<select>").attr({
-          name: "unit[unit_class]",
-          id: "unit_unit_class"
+          name: "unit[unit_class_id]",
+          id: "unit_unit_class_id"
         });
         for (var i = classList.length - 1; i >= 0; i--) {
           var $newOption = $('<option>').attr({
@@ -55,8 +55,8 @@ $(document).ready(function() {
         var $buttonDiv = $('<div>').attr({class: 'actions'});
         $buttonDiv.append($newForm);
         var $unitListing = $('<li>').addClass('unit').attr('data-unit-id',
-          unit.unit.id).html(unit.faction);
-        $unitListing.append(" " + unit.unit.name);
+          unit.unit.id).html(unit.unit.name);
+        $unitListing.append(": " + unit.faction + " " + unit.unit_class);
         $unitListing.append($buttonDiv);
         $("#contents").append($unitListing);
         initDeleteHandler();

@@ -22,7 +22,10 @@ class UnitsController < ApplicationController
             redirect_to galaxy_system_path(@system.galaxy, @system)
           }
           format.json {
-            render json: { unit: @unit, faction: @unit.faction.name}
+            render json: {
+              unit: @unit,
+              faction: @unit.faction.name,
+              unit_class: @unit.unit_class.name}
           }
         else
           format.html { render "systems/show" }
@@ -60,7 +63,7 @@ class UnitsController < ApplicationController
 
   def unit_params
     params.require(:unit).permit(
-      :name, :system_id, :destination_id, :faction_id
+      :name, :system_id, :destination_id, :faction_id, :unit_class_id
       )
   end
 end
