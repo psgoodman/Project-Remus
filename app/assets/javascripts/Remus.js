@@ -2,23 +2,23 @@ $(document).ready(function() {
   $('#unit_faction_id').on('change', function(event) {
     var $factionId = this.value;
     $.ajax({
-      type: "GET",
-      url: "/units/new",
-      data: {"faction_id": $factionId},
+      type: 'GET',
+      url: '/units/new',
+      data: {'faction_id': $factionId},
       dataType: 'json',
       success: function(classList) {
-        var $classField = $("div.unit-class");
+        var $classField = $('div.unit-class');
         $classField.empty();
-        var $newLabel = $("<label>").attr({ for: 'unit_unit_class' });
-        var $newSelect = $("<select>").attr({
-          name: "unit[unit_class_id]",
-          id: "unit_unit_class_id"
+        var $newLabel = $('<label>').attr({ for: 'unit_unit_class' });
+        var $newSelect = $('<select>').attr({
+          name: 'unit[unit_class_id]',
+          id: 'unit_unit_class_id'
         });
         for (var i = classList.length - 1; i >= 0; i--) {
           var $newOption = $('<option>').attr({
-            value: classList[i]["id"]
+            value: classList[i].id
           });
-          $newOption.append(classList[i]["name"]);
+          $newOption.append(classList[i].name);
           $newSelect.append($newOption);
         };
         $classField.append($newLabel);
@@ -31,7 +31,7 @@ $(document).ready(function() {
     event.preventDefault();
     var $form = $(event.currentTarget);
     $.ajax({
-      type: "POST",
+      type: 'POST',
       url: $form.attr('action'),
       data: $($form).serialize(),
       dataType: 'json',
@@ -56,9 +56,9 @@ $(document).ready(function() {
         $buttonDiv.append($newForm);
         var $unitListing = $('<li>').addClass('unit').attr('data-unit-id',
           unit.unit.id).html(unit.unit.name);
-        $unitListing.append(": " + unit.faction + " " + unit.unit_class);
+        $unitListing.append(': ' + unit.faction + ' ' + unit.unit_class);
         $unitListing.append($buttonDiv);
-        $("#contents").append($unitListing);
+        $('#contents').append($unitListing);
         initDeleteHandler();
       }
     });
@@ -75,7 +75,7 @@ function initDeleteHandler() {
     var $form = $(event.currentTarget);
 
     $.ajax({
-      type: "DELETE",
+      type: 'DELETE',
       url: $form.attr('action'),
       dataType: 'json',
       success: function() {
