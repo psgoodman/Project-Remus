@@ -5,7 +5,7 @@ class UnitsController < ApplicationController
     @faction = Faction.find(params["faction_id"])
     class_list = []
     @faction.unit_classes.each do |unit_class|
-      class_list << {id: unit_class.id, name: unit_class.name}
+      class_list << { id: unit_class.id, name: unit_class.name }
     end
     render json: class_list
   end
@@ -25,7 +25,7 @@ class UnitsController < ApplicationController
             render json: {
               unit: @unit,
               faction: @unit.faction.name,
-              unit_class: @unit.unit_class.name}
+              unit_class: @unit.unit_class.name }
           }
         else
           format.html { render "systems/show" }

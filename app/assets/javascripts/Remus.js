@@ -20,7 +20,7 @@ $(document).ready(function() {
           });
           $newOption.append(classList[i].name);
           $newSelect.append($newOption);
-        };
+        }
         $classField.append($newLabel);
         $classField.append($newSelect);
       }
