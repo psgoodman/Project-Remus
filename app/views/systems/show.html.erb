@@ -32,7 +32,7 @@
         <h3>System Contents:</h3>
         <ul id="contents">
           <% @system.units.each do |unit| %>
-            <li id="unit-<%= unit.id %>" data-unit-id="<%= unit.id %>"><%="#{unit.faction.name} #{unit.name}"%>
+            <li id="unit-<%= unit.id %>" data-unit-id="<%= unit.id %>"><%="#{unit.name}: #{unit.faction.name} #{unit.unit_class.name}"%>
               <%- unless unit.destination == @system -%>
                 - Destination: <%=unit.destination.name%>
               <%- end -%>
@@ -63,6 +63,9 @@
             </div>
 
             <%= f.hidden_field(:system_id, value: @system.id) %>
+
+            <div class="field unit-class">
+            </div>
 
             <div class="actions">
               <%= f.submit "Create Unit" %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421184753) do
+ActiveRecord::Schema.define(version: 20150520001147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,11 +51,18 @@ ActiveRecord::Schema.define(version: 20150421184753) do
     t.integer  "faction_id",     null: false
   end
 
+  create_table "unit_classes", force: :cascade do |t|
+    t.string  "name",        null: false
+    t.text    "description"
+    t.integer "faction_id"
+  end
+
   create_table "units", force: :cascade do |t|
     t.string  "name",           null: false
     t.integer "system_id"
     t.integer "destination_id"
     t.integer "faction_id",     null: false
+    t.integer "unit_class_id"
   end
 
   create_table "users", force: :cascade do |t|

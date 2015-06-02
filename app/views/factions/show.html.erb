@@ -4,8 +4,10 @@
   </div>
 </div>
 
-<p><%= link_to "Back to #{@faction.galaxy.name} Map", @faction.galaxy %></p>
-<p><%= link_to "Back to #{@faction.galaxy.name} Factions List", galaxy_factions_path(@faction.galaxy) %></p>
+<div class="row">
+  <p><%= link_to "Back to #{@faction.galaxy.name} Map", @faction.galaxy %></p>
+  <p><%= link_to "Back to #{@faction.galaxy.name} Factions List", galaxy_factions_path(@faction.galaxy) %></p>
+</div>
 
 <div class="row">
   <div class="large-4 small-6 columns">
@@ -26,5 +28,16 @@
         </div>
       <% end %>
     <% end %>
+    <ul>
+      <% @faction.unit_classes.each do |unit_class| %>
+        <li><%= "#{unit_class.name}: #{unit_class.description}" %></li>
+      <% end %>
+      <% if current_user == @faction.galaxy.gm || current_user.authority == "admin" %>
+        <p>
+          <%= link_to "Design New Unit", new_faction_unit_class_path(@faction)%>
+        </p>
+      <% end %>
+    </ul>
+
   </div>
 </div>
