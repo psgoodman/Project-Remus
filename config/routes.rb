@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   resources :factions, only: [:destroy] do
     resources :unit_classes, only: [:new, :create, :destroy]
+    resources :budgets, only: [:index, :show, :edit, :update]
   end
   resources :users, only: [:show]
   resources :units, only: [:new, :create, :destroy]

@@ -4,6 +4,7 @@ class Faction < ActiveRecord::Base
   has_many :systems
   has_many :units
   has_many :unit_classes
+  has_many :budgets
 
   validates :name, presence: true, uniqueness: { scope: :galaxy_id }
   validates :user, presence: true
