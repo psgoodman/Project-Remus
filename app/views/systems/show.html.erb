@@ -49,7 +49,7 @@
           <%= button_to "Issue Move Orders", new_galaxy_system_move_path(@system.galaxy, @system), { method: :get} %>
         </div>
         <%- if current_user == @system.galaxy.gm -%>
-          <h4>Create Unit:</h4>
+          <h4>Create New Unit:</h4>
 
           <%= form_for(@unit, data: {unit: 'create'}) do |f| %>
             <div class="field">
