@@ -1,4 +1,4 @@
-class System < ActiveRecord::Base
+class System < ApplicationRecord
 
   belongs_to :galaxy
   belongs_to :faction

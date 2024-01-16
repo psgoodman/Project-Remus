@@ -1,4 +1,4 @@
-class UnitClass < ActiveRecord::Base
+class UnitClass < ApplicationRecord
   belongs_to :faction
   has_many :units
 

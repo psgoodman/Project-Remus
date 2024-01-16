@@ -1,4 +1,4 @@
-class Unit < ActiveRecord::Base
+class Unit < ApplicationRecord
 
   belongs_to :system
   belongs_to :destination,

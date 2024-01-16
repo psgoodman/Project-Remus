@@ -1,7 +1,7 @@
 require_relative "system.rb"
 require 'csv'
 
-class Galaxy < ActiveRecord::Base
+class Galaxy < ApplicationRecord
 
   has_many :systems, dependent: :destroy
   belongs_to :gm,

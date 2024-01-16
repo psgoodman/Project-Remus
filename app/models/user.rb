@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_many :owned_galaxies, class_name: "Galaxy", foreign_key: :gm_id
   has_many :factions
   has_many :galaxies, through: :factions
