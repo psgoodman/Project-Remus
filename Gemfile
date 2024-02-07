@@ -23,6 +23,8 @@ gem 'jbuilder'
 gem 'sdoc'
 gem 'foundation-rails'
 
+gem 'webpacker'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
