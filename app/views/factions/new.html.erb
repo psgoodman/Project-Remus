@@ -10,11 +10,16 @@
 <div class="row">
   <div class="large-4 small-6 columns">
     <%= form_for [@galaxy, @faction] do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
 
-      <%= f.label :user, "Player" %>
-      <%= f.collection_select :user_id, User.all, :id, :username %>
+      <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :user, "Player" %>
+        <%= f.collection_select :user_id, User.all, :id, :username %>
+      </div>
       <div class="actions">
         <%= f.submit "Create Faction" %>
       </div>
